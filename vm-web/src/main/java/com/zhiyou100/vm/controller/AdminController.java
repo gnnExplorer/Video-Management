@@ -49,7 +49,8 @@ public class AdminController {
 
 	@RequestMapping("/exitAdmin.action")
 	public String exit(HttpSession session) {
-		session.invalidate();
+		/*session.invalidate();*/
+		session.removeAttribute("admin");
 		return "redirect:/index.jsp";
 	}
 

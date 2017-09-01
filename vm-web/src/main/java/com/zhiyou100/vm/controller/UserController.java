@@ -71,7 +71,8 @@ public class UserController {
 	//退出
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session){
-		session.invalidate();
+		/*session.invalidate();*/
+		session.removeAttribute("user");
 		return "redirect:/front/user/showfont.do";
 	}
 	//忘记密码

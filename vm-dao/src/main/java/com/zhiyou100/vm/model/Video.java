@@ -13,6 +13,7 @@ public class Video {
     private Integer courseId;
 
     private Integer videoLength;
+    private String videoLengthStr;
 
     private String videoImageUrl;
 
@@ -29,7 +30,15 @@ public class Video {
     
     
 
-    public String getSpeakerName() {
+    public String getVideoLengthStr() {
+		return videoLengthStr;
+	}
+
+	public void setVideoLengthStr(String videoLengthStr) {
+		this.videoLengthStr = videoLengthStr;
+	}
+
+	public String getSpeakerName() {
 		return speakerName;
 	}
 
@@ -137,9 +146,9 @@ public class Video {
 	public String toString() {
 		return "Video [id=" + id + ", videoTitle=" + videoTitle + ", speakerId=" + speakerId + ", speakerName="
 				+ speakerName + ", courseName=" + courseName + ", courseId=" + courseId + ", videoLength=" + videoLength
-				+ ", videoImageUrl=" + videoImageUrl + ", videoUrl=" + videoUrl + ", videoDescr=" + videoDescr
-				+ ", insertTime=" + insertTime + ", updateTime=" + updateTime + ", videoPlayTimes=" + videoPlayTimes
-				+ "]";
+				+ ", videoLengthStr=" + videoLengthStr + ", videoImageUrl=" + videoImageUrl + ", videoUrl=" + videoUrl
+				+ ", videoDescr=" + videoDescr + ", insertTime=" + insertTime + ", updateTime=" + updateTime
+				+ ", videoPlayTimes=" + videoPlayTimes + "]";
 	}
     
 }

@@ -19,16 +19,16 @@ public class FrontCourseController {
 	SubjectService ss;
 	@Autowired
 	CourseService cs;
-	
+
 	@RequestMapping("/index.do")
-	public String getToCourseIndex(Integer subjectId,Model md){
+	public String getToCourseIndex(Integer subjectId, Model md) {
 		Subject subject = ss.findSubject(subjectId);
 		List<Course> courses = cs.findCourseWithVideos(subjectId);
 		md.addAttribute("courses", courses);
 		md.addAttribute("subject", subject);
 		md.addAttribute("subjectId", subjectId);
-		//System.out.println(subject);
-		//System.out.println(courses);
+		// System.out.println(subject);
+		// System.out.println(courses);
 		return "front/course/index";
 	}
 }

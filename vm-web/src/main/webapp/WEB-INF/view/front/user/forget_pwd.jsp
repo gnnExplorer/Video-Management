@@ -36,7 +36,7 @@
                 </div>
                 <div class="form_body">
                     <input type="email" placeholder="请输入登录邮箱" name="email" id="email">
-                    <input type="text" placeholder="请输入验证码" name="captcha"><input type="button" value="发邮件获取验证码" onclick="submitEmail();">
+                    <input type="text" placeholder="请输入验证码" name="captcha"><input type="button" id="countDown" value="发邮件获取验证码" onclick="submitEmail(this);">
                     <input type="submit" value="提交">
                 </div>
                 <div class="form_footer">
@@ -50,16 +50,33 @@
     </main>
 <%@include file="/WEB-INF/view/front/include/script.html"%>
     <script type="text/javascript">
-		function submitEmail(){
+		function submitEmail(val){
+			
 			var email = $('#email').val();
-			//改为ajax提交邮箱
+			//倒计时
 			if(email!=null&&email!=''){
+				var num=60;
+	            var tim=setInterval(function (){  
+	            	val.setAttribute("disabled", true);   
+	    			val.value="重新发送(" + num + ")";
+	                num--;
+	                if(num==0){
+	                    clearInterval(tim);
+	                    val.removeAttribute("disabled");
+	                    val.value="发邮件获取验证码";
+	                }
+	            },1000);
+	          //改为ajax提交邮箱
 				$.post('/vm-web/front/user/sendemail.do',{email:email},function(data){
 					console.log(data);
 					if(data.success){
-						alert('验证码已发送到邮箱，请注意查收');
+						//alert('验证码已发送到邮箱，请注意查收');
+			            
 					}else{
 						alert('验证码发送失败：'+data.message);
+						clearInterval(tim);
+						$("#countDown").removeAttribute("disabled");
+						$("#countDown").value="发邮件获取验证码";
 					}
 				},'json');
 			}
